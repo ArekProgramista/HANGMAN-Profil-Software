@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="pl-PL">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>HANGMAN</title>
+    <meta name="description" content="The HTML5 Herald" />
+    <meta name="author" content="SitePoint" />
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="C:/Users/Gnome Child/Documents/Projekty/Projekt_Staż/index.css"
+    />
+    <script src="index.js"></script>
+  </head>
+
+  <body>
+    <div id="background">
+      <img src="assets/background.jpg" class="stretch" />
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-3">
+          <div class="first_panel">
+            <div class="type_box">
+              <input
+                id="typeInput"
+                onfocus="this.value=''"
+                type="text"
+                class="form-control"
+                maxlength="1"
+                autofocus
+              />
+            </div>
+            <p><label id="instructions">TYPE A LETTER</label></p>
+            <div id="button_div">
+              <button
+                type="button"
+                class="btn btn-hot text-uppercase btn-sm"
+                onclick="submit()"
+              >
+                SUBMIT
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class=" second_panel col-xs-6">
+          <div id="picture"><img src="assets/1.0.jpg" alt="Smiley face" /></div>
+          <div id="currentWord"><p></p></div>
+        </div>
+
+        <div class=" third_panel col-xs-3">
+          <label>WRONG TYPED LETTERS:</label>
+          <div id="typedLetters"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
