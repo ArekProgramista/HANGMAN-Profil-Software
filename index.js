@@ -116,7 +116,7 @@ function submit() {
   /*wygrana*/
   if (currentWord == changedCurrentWord) {
     finGame(
-      "GRATULATIONS. TRY AGAIN?",
+      "CONGRATULATIONS. TRY AGAIN?",
       "#59af44",
       '  <button type="button" class="btn btn-hot text-uppercase btn-sm" onclick="restartGame()" > NEW WORD </button>',
       1
