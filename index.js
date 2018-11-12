@@ -20,7 +20,7 @@ function restartGame() {
   location.reload();
 }
 
-/*Funkcje opoiwadajaca za fade in i out"*/
+/*Funkcje odpowiadajaca za fade in i out"*/
 function hide() {
   $("#picture").fadeOut(500);
 }
@@ -36,7 +36,7 @@ function show(winOrNot) {
   }
 }
 
-/*Funckja ktora updatuje intrukcje*/
+/*Funckja która updatuje intrukcje*/
 function updateInstructions(type) {
   if (type == 1) {
     document.getElementById("instructions").innerHTML = "TYPE A LETTER";
