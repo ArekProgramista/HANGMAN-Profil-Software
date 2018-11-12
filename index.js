@@ -63,7 +63,7 @@ http.onload = () => {
   console.log("HINT:" + currentWord);
 };
 
-/*Finał gry*/
+/*Finał gry, zmiana obrazka na wygraną, bądź przegraną*/
 function finGame(tekst, color, button, winOrNot) {
   document.getElementById("instructions").innerHTML = tekst;
   document.getElementById("instructions").style.color = color;
