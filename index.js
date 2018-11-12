@@ -7,7 +7,7 @@ var missed = 0;
 var key = "D67J95AU";
 var ask = "http://random-word-api.herokuapp.com/word?key=" + key + "&number=1";
 
-/*Funkcja która zamienia znaki słowa na "•"*/
+/*Zmiana liter w pobranym słowie na "•"*/
 function hideWord(currentWord) {
   changedCurrentWord = currentWord.replace(
     /a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|r|s|t|u|v|w|x|y|z|q/g,
@@ -15,12 +15,11 @@ function hideWord(currentWord) {
   );
 }
 
-/*Fukncja odpowiadająca za restar gry*/
 function restartGame() {
   location.reload();
 }
 
-/*Funkcje odpowiadajaca za fade in i out"*/
+/*Funkcje odpowiedzialne za przyciemnianie i rozjaśnianie obrazu"*/
 function hide() {
   $("#picture").fadeOut(500);
 }
@@ -36,7 +35,7 @@ function show(winOrNot) {
   }
 }
 
-/*Funckja która updatuje intrukcje*/
+/*Aktualizacja instrukcji dla gracza"*/
 function updateInstructions(type) {
   if (type == 1) {
     document.getElementById("instructions").innerHTML = "TYPE A LETTER";
@@ -51,7 +50,7 @@ String.prototype.replaceAt = function(index, replacement) {
   else return this.substr(0, index) + replacement + this.substr(index + 1);
 };
 
-/*Pobranie hasła z api, key może sie przedawnić (lecz nie powinien). Uruchamia się przy otwarciu strony*/
+/*Pobranie hasła z api. Uruchamia się przy otwarciu strony*/
 const http = new XMLHttpRequest();
 http.open("GET", ask);
 http.send();
@@ -64,7 +63,7 @@ http.onload = () => {
   console.log("HINT:" + currentWord);
 };
 
-/*Funkcja odpowiadajaca za finał gry*/
+/*Finał gry*/
 function finGame(tekst, color, button, winOrNot) {
   document.getElementById("instructions").innerHTML = tekst;
   document.getElementById("instructions").style.color = color;
@@ -73,28 +72,26 @@ function finGame(tekst, color, button, winOrNot) {
   setTimeout("show(" + winOrNot + ")", 1500);
 }
 
-/*Funkcja wywyływana przy nacisnieciu guzika*/
+/*Funkcja wywyływana przy nacisnieciu guzika SUBMIT*/
 function submit() {
   /*Pobranie potwierdzonej litery*/
   var typedLetter = document.getElementById("typeInput").value;
-  /*Czy litera jest w słowie*/
-  if (currentWord.indexOf(typedLetter) != -1) {
-    /*1.Tak, sprawdź gdzie i ją zmień*/
-    for (i = 0; i < currentWord.length; i++) {
+  if (currentWord.indexOf(typedLetter) != -1) { /*Sprawdź czy litera jest w słowie*/
+    for (i = 0; i < currentWord.length; i++) { /*1.Jest, sprawdź gdzie i ją zmień*/
       if (currentWord.charAt(i) == typedLetter) {
         changedCurrentWord = changedCurrentWord.replaceAt(i, typedLetter);
         document.getElementById("currentWord").innerHTML = changedCurrentWord;
         updateInstructions(1);
       }
     }
-    /*1.Nie*/
+    /*1.Nie ma*/
   } else {
-    /*Czy była wcześniej wpisana */
-    if (wrongLetters.includes(typedLetter)) {
-      /*2.Tak*/
+    if (wrongLetters.includes(typedLetter)) { /*Sprawdź czy była wcześniej wpisana */
+      /*2.Tak, była*/
       updateInstructions();
-    } else {
-      /*2.Nie, podmien obraz i dopisz litere do wpisanych wczesniej*/
+      
+     } /*2.Nie była, podmien obraz i dopisz litere do wpisanych wczesniej*/
+    else {
       missed += 1;
       wrongLetters[wrongLetters.length] = typedLetter;
       document.getElementById("typedLetters").innerHTML = wrongLetters;
@@ -104,8 +101,7 @@ function submit() {
     }
   }
   /*Koniec gry*/
-  /*przegrana*/
-  if (missed == 12) {
+  if (missed == 12) { /*Przegrana*/
     finGame(
       "GOOD LUCK NEXT TIME",
       "#af4451",
@@ -113,8 +109,7 @@ function submit() {
       2
     );
   }
-  /*wygrana*/
-  if (currentWord == changedCurrentWord) {
+  if (currentWord == changedCurrentWord) { /*wygrana*/
     finGame(
       "CONGRATULATIONS. TRY AGAIN?",
       "#59af44",
